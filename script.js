@@ -56,7 +56,7 @@ const phones = [
         price: 15000
     },
     {
-        brand: 'Abdullah',
+        brand: 'Iphone 13',
         model: 's50',
         ram: 50,
         rom: 1024,
