@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <style>
+        /* Add your CSS styles here */
+        .cart-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Admin Dashboard - Cart Items</h1>
+        <div id="cartItems"></div>
+    </div>
+
+    <script>
+        // Function to display cart items on the admin page
+        function displayCartItems() {
+            const cartData = localStorage.getItem('cartItem');
+            const cartArr = cartData ? JSON.parse(cartData) : [];
+
+            const cartItemsDiv = document.getElementById('cartItems');
+            cartItemsDiv.innerHTML = ''; // Clear existing content
+
+            if (cartArr.length === 0) {
+                cartItemsDiv.innerHTML = '<p>No items in the cart.</p>';
+            } else {
+                cartArr.forEach((item, index) => {
+                    cartItemsDiv.innerHTML += `
+                        <div class="cart-item">
+                            <p><strong>Brand:</strong> ${item.brand}</p>
+                            <p><strong>Model:</strong> ${item.model}</p>
+                            <p><strong>Quantity:</strong> ${item.quantity}</p>
+                            <p><strong>Price:</strong> ${item.price} PKR</p>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        // Function to delete cart items from localStorage
+        function deleteItems() {
+            localStorage.removeItem('cartItem');
+            // Clear cart items display on the admin page
+            const cartItemsDiv = document.getElementById('cartItems');
+            cartItemsDiv.innerHTML = '<p>No items in the cart.</p>';
+        }
+
+        // Call displayCartItems function when the admin page loads
+        displayCartItems();
+    </script>
+
+    <button onclick="deleteItems()">Delete Cart Items</button>
+</body>
+</html>

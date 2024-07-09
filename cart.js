@@ -3,6 +3,11 @@ function goToHome() {
     localStorage.setItem('cartItem' , JSON.stringify(cartArr));
 }
 
+function goToadmin () {
+    window.location = 'admin.html'
+
+}
+
 
 const data = localStorage.getItem('cartItem');
 const cartArr = JSON.parse(data);
